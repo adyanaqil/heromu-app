@@ -4,9 +4,23 @@ import YouTube from "react-youtube";
 
 export default function FormVideoPage() {
   const [videoFinished, setVideoFinished] = useState(false);
+  const [videoStartTime, setVideoStartTime] = useState(0);
+  const [videoEndTime, setVideoEndTime] = useState(0);
 
   const onEnd = () => {
     setVideoFinished(true);
+    setVideoEndTime(new Date().getTime());
+  };
+
+  const onPlay = () => {
+    setVideoStartTime(new Date().getTime());
+  };
+
+  const onPause = () => {
+    const currentTime = new Date().getTime();
+    const timeElapsed = currentTime - videoStartTime;
+    // Here, you can handle timeElapsed however you like
+    console.log("Time watched:", timeElapsed);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,6 +58,8 @@ export default function FormVideoPage() {
           className="w-full"
           iframeClassName="w-full h-[200px]"
           onEnd={onEnd}
+          onPlay={onPlay}
+          onPause={onPause}
         />
         <h3>😊 Mohon isi nama anda setelah menonton video di atas!</h3>
         <form onSubmit={handleSubmit}>
@@ -63,7 +79,9 @@ export default function FormVideoPage() {
 
           <button
             type="submit"
-            className={`mt-2 bg-black w-full text-white rounded p-1  ${videoFinished?"opacity-100 cursor-pointer":"cursor-not-allowed opacity-50"}`}
+            className={`mt-2 bg-black w-full text-white rounded p-1  ${
+              videoFinished ? "opacity-100 cursor-pointer" : "cursor-not-allowed opacity-50"
+            }`}
             disabled={!videoFinished}
           >
             Simpan Data
