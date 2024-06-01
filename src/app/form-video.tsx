@@ -22,7 +22,7 @@ export default function FormVideoPage() {
     const timeElapsed = currentTime - videoStartTime;
     // Here, you can handle timeElapsed however you like
     console.log("Time watched:", timeElapsed);
-    setTimeWatch(timeElasped)
+    setTimeWatch(timeElapsed)
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
