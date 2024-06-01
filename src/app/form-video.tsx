@@ -11,6 +11,11 @@ export default function FormVideoPage() {
   const onEnd = () => {
     setVideoFinished(true);
     setVideoEndTime(new Date().getTime());
+    const currentTime = new Date().getTime();
+    const timeElapsed = currentTime - videoStartTime;
+    // Here, you can handle timeElapsed however you like
+    console.log("Time watched:", timeElapsed);
+    setTimeWatch(timeElapsed)
   };
 
   const onPlay = () => {
@@ -18,11 +23,7 @@ export default function FormVideoPage() {
   };
 
   const onPause = () => {
-    const currentTime = new Date().getTime();
-    const timeElapsed = currentTime - videoStartTime;
-    // Here, you can handle timeElapsed however you like
-    console.log("Time watched:", timeElapsed);
-    setTimeWatch(timeElapsed)
+
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
