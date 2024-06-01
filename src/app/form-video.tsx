@@ -6,6 +6,7 @@ export default function FormVideoPage() {
   const [videoFinished, setVideoFinished] = useState(false);
   const [videoStartTime, setVideoStartTime] = useState(0);
   const [videoEndTime, setVideoEndTime] = useState(0);
+  const [timeWatch, setTimeWatch] = useState(0);
 
   const onEnd = () => {
     setVideoFinished(true);
@@ -21,6 +22,7 @@ export default function FormVideoPage() {
     const timeElapsed = currentTime - videoStartTime;
     // Here, you can handle timeElapsed however you like
     console.log("Time watched:", timeElapsed);
+    setTimeWatch(timeElasped)
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,11 +32,12 @@ export default function FormVideoPage() {
     const name = data.get("name") as string;
     const date = new Date().toISOString().split("T")[0];
     const time = new Date().toLocaleTimeString();
+    const duration = timeWatch / 60
 
     if (videoFinished) {
       await fetch(
         "https://script.google.com/macros/s/AKfycbxmlChZAKnZjXhG6cEHFDiwEMU28tJbtfK2pLBzH2ysnRf1ha8_u2EDPc7OH6_698TC/exec",
-        { method: "POST", body: JSON.stringify({ name, date, time }) }
+        { method: "POST", body: JSON.stringify({ name, date, time, duration }) }
       ).then(() => {
         alert("Data berhasil disimpan.");
       });
