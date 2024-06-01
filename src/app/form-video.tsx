@@ -32,7 +32,7 @@ export default function FormVideoPage() {
     const name = data.get("name") as string;
     const date = new Date().toISOString().split("T")[0];
     const time = new Date().toLocaleTimeString();
-    const duration = timeWatch / 60
+    const duration = timeWatch / 60;
 
     if (videoFinished) {
       await fetch(
