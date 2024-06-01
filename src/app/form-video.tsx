@@ -36,7 +36,7 @@ export default function FormVideoPage() {
 
     if (videoFinished) {
       await fetch(
-        "https://script.google.com/macros/s/AKfycbxmlChZAKnZjXhG6cEHFDiwEMU28tJbtfK2pLBzH2ysnRf1ha8_u2EDPc7OH6_698TC/exec",
+        "https://script.google.com/macros/s/AKfycbzDvFHCF7pxc0JCeTgmsaCeW2lcQDdKGJpKDMhmK-DfK3MMxIC2iGW0Q3eJcM8suLO1/exec",
         { method: "POST", body: JSON.stringify({ name, date, time, duration }) }
       ).then(() => {
         alert("Data berhasil disimpan.");
